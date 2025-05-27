@@ -61,15 +61,6 @@ def create_user():
     return jsonify({"message": "Dados inválidos!"}), 400
 
 
-@app.route('/user/<int:id_user>', methods=['GET'])
-@login_required
-def read_user(id_user):
-    user = User.query.get(id_user)
-    if user:
-        return jsonify({"username": user.username})
-    return jsonify({"message": "Usuário não encontrado!", }), 404
-
-
 @app.route('/user/<int:id_user>', methods=['PUT'])
 @login_required
 def update_user(id_user):
@@ -86,22 +77,30 @@ def update_user(id_user):
     return jsonify({"message": "Usuário não encontrado!", }), 404
 
 
-@app.route('/user/<int:id_user>', methods=['DELETE'])
-@login_required
-def delete_user(id_user):
-    user = User.query.get(id_user)
+# Meal
+@app.route('/meal', methods=['POST'])
+def create_meal():
+    ...
 
-    if current_user.role != 'admin':
-        return jsonify({"message": "Operação não permitida!", }), 403
 
-    if id_user == current_user.id:
-        return jsonify({"message": "Não permitido!", }), 403
+@app.route('/meal', methods=['GET'])
+def list_meals():
+    ...
 
-    if user:
-        db.session.delete(user)
-        db.session.commit()
-        return jsonify({"message": f"Usuário {id_user} deletado com sucesso!", })
-    return jsonify({"message": "Usuário não encontrado!", }), 404
+
+@app.route('/meal/<int:id_meal>', methods=['GET'])
+def get_meal(id_meal):
+    ...
+
+
+@app.route('/meal/<int:id_meal>', methods=['PUT'])
+def update_meal(id_meal):
+    ...
+
+
+@app.route('/meal/<int:id_meal>', methods=['DELETE'])
+def delete_meal(id_meal):
+    ...
 
 
 if __name__ == '__main__':
