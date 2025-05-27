@@ -1,4 +1,3 @@
-
 from flask import Flask, request, jsonify
 from models.user import User
 from models.meal import Meal
@@ -8,7 +7,7 @@ import bcrypt
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:admin123@localhost:3306/my-daily-diet'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://mysqladmin:mysqladmin123@localhost:3306/mydailydiet'
 
 login_manager = LoginManager()
 db.init_app(app)
@@ -49,7 +48,7 @@ def create_user():
     username = data.get('username')
     password = data.get('password')
 
-    exist_user = User.query.filter_by(username=username)
+    exist_user = User.query.filter_by(username=username).first()
     if exist_user:
         return jsonify({"message": "Usuário já cadastrado!"}), 401
 
@@ -58,7 +57,7 @@ def create_user():
         user = User(username=username, password=hashed_password, role='user')
         db.session.add(user)
         db.session.commit()
-        return jsonify({"message": "Usuário cadastrado com sucesso!"}), 200 
+        return jsonify({"message": "Usuário cadastrado com sucesso!"}), 200
     return jsonify({"message": "Dados inválidos!"}), 400
 
 
@@ -94,7 +93,6 @@ def delete_user(id_user):
 
     if current_user.role != 'admin':
         return jsonify({"message": "Operação não permitida!", }), 403
-
 
     if id_user == current_user.id:
         return jsonify({"message": "Não permitido!", }), 403
