@@ -1,0 +1,252 @@
+type: spec.insomnia.rest/5.0
+name: API Daily Diet API.
+meta:
+  id: wrk_46a14f2478c745e5832967baca431a5e
+  created: 1744719889658
+  modified: 1744719889658
+collection:
+  - name: meal
+    meta:
+      id: fld_70246d5c67f34f4282222368566ba68b
+      created: 1744726875856
+      modified: 1744727015314
+      sortKey: -1744726875856
+    children:
+      - url: "{{ _.base_url }}/meal"
+        name: criar uma refeição
+        meta:
+          id: req_9e8d8b07fa5e4de9a3bc7e6f8b425749
+          created: 1744726908535
+          modified: 1744727100601
+          isPrivate: false
+          sortKey: -1744727007424
+        method: POST
+        body:
+          mimeType: application/json
+          text: |+
+            {
+            	"name":"",
+            	"description":"",
+            	"is_in_diet":""
+            }
+
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/meal/1"
+        name: editar uma refeição
+        meta:
+          id: req_c634faab7e724531b60520fb43dbb782
+          created: 1744727055973
+          modified: 1748368873639
+          isPrivate: false
+          sortKey: -1744510387722.5
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |+
+            {
+            	"name":"",
+            	"description":"",
+            	"is_in_diet":""
+            }
+
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/meal"
+        name: listar todas as refeições
+        meta:
+          id: req_9132047f6c0f4550a8798e0d0c3d73c2
+          created: 1744727093192
+          modified: 1744727202763
+          isPrivate: false
+          sortKey: -1744727007524
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/meal/1"
+        name: listar um refeição por id
+        meta:
+          id: req_3efa7ce35a0847ceb2bc004d87c6196a
+          created: 1744727133251
+          modified: 1748368822171
+          isPrivate: false
+          sortKey: -1744727007474
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/meal/1"
+        name: deletar uma refeição
+        meta:
+          id: req_6b2a0c5a23d44fd5a438dbfcb18a9a31
+          created: 1744727170648
+          modified: 1748368896579
+          isPrivate: false
+          sortKey: -1744320845483.6875
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: user
+    meta:
+      id: fld_8baa37da935d497986a19e9697b50518
+      created: 1744728296446
+      modified: 1744728296446
+      sortKey: -1744728296446
+    children:
+      - url: "{{ _.base_url }}/login"
+        name: login
+        meta:
+          id: req_6084bc2cc7084d56a5c10f46545d9924
+          created: 1744728304098
+          modified: 1748366690320
+          isPrivate: false
+          sortKey: -1744728307848
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username":"admin",
+            	"password":"admin"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/logout"
+        name: logout
+        meta:
+          id: req_c64b71f74a5f493294954f4d1b4d223a
+          created: 1744728343871
+          modified: 1744728382123
+          isPrivate: false
+          sortKey: -1744728307748
+        method: POST
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/user"
+        name: create_user
+        meta:
+          id: req_3005fd53d594453982ae64b9383f1ea5
+          created: 1748351854436
+          modified: 1748367622895
+          isPrivate: false
+          sortKey: -1744728307798
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username":"",
+            	"password":""
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.0.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_0f0fd3300844466caba8f20ebfe560bf
+    created: 1744719889662
+    modified: 1744719889662
+environments:
+  name: Base Environment
+  meta:
+    id: env_45c5846b97ae4b0581cddf1dd1da7f02
+    created: 1744719889660
+    modified: 1744719889660
+    isPrivate: false
+  data:
+    base_url: "{{ _.scheme }}://{{ _.host }}{{ _.base_path }}"
+  subEnvironments:
+    - name: OpenAPI env 127.0.0.1:5000
+      meta:
+        id: env_6ad876f5cb924f22a339c7dc8d080165
+        created: 1744719889661
+        modified: 1744719889661
+        isPrivate: false
+        sortKey: 1743085113802
+      data:
+        scheme: http
+        host: 127.0.0.1:5000
+spec:
+  meta:
+    id: spc_6c9a3dd3d80644eeb80c60f1194036f6
+    created: 1744719889664
+    modified: 1744720134795
