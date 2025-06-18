@@ -12,4 +12,24 @@ services:
     expose:
       - '3306'
     volumes:
-      - /home/brcds/dev/daily-diet-api/mysql:/var/lib/mysql
+      - ./mysql:/var/lib/mysql
+
+  web:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    env_file: .env
+    command: [ "flask", "run", "--host=0.0.0.0" ]
+
+  tests:
+    build: .
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    env_file: .env.testing
+    command: [ "pytest", "tests.py" ]

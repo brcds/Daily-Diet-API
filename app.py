@@ -1,16 +1,24 @@
+import os
+import bcrypt
+
 from flask import Flask, request, jsonify
 from models.user import User
 from models.meal import Meal
 from database import db
 from flask_login import LoginManager, login_user, current_user, logout_user, login_required
-import bcrypt
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path=".env" if os.getenv("FLASK_ENV") != "testing" else ".env.testing")
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'YOUR_SECRET_KEY'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://mysqladmin:mysqladmin123@localhost:3306/mydailydiet'
+
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'default-secret')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
 
 login_manager = LoginManager()
-db.init_app(app)
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
@@ -91,7 +99,14 @@ def create_meal():
         db.session.add(meal)
         db.session.add(meal)
         db.session.commit()
-        return jsonify({"message": "Refeição cadastrada com sucesso!"}), 200
+        return jsonify({
+            "message": "Refeição cadastrada com sucesso!",
+            "id": meal.id,
+            "name": meal.name,
+            "description": meal.description,
+            "date_time": meal.date_time.strftime("%d/%m/%Y %H:%M"),
+            "is_in_diet": meal.is_in_diet,
+        }), 200
     return jsonify({"message": "Dados inválidos para registrar a refeição!"}), 400
 
 
